@@ -9,6 +9,7 @@ import org.junit.Test;
 import com.gk.smartcode.context.Context;
 import com.gk.smartcode.context.SimpleContext;
 import com.gk.smartcode.data.Person;
+import com.gk.smartcode.data.State;
 
 public class ComponentTest {
 	
@@ -42,6 +43,16 @@ public class ComponentTest {
 	}
 	
 	@Test
+	public void testMultiChoiceSimple() {
+		Context context = new SimpleContext();
+		Person person = new Person();
+		person.setState(State.MH);
+		context.setData(KEY_PERSON, person);
+		Component taxCalc = new GetTaxCalc();
+		taxCalc.execute(context);
+		assertThat(person.getTax(), is(245.00));
+	}
+
 	public void testSimpleDecision() {
 		Context context = new SimpleContext();
 		Person person = new Person();
@@ -52,6 +63,5 @@ public class ComponentTest {
 		isMinor.execute(context);
 		assertThat(person.isMinor(), is(true));
 	}
-	
 
 }
