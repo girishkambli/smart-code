@@ -43,5 +43,10 @@ public class ComponentTest {
 		assertThat(person.getName(), is("Girish"));
 		assertThat(person.getAge(), is(34));
 	}
+	
+	@Test
+	public void testMultiChoiceSimple() {
+		
+	}
 
 }
