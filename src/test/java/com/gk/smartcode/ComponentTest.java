@@ -1,11 +1,8 @@
 package com.gk.smartcode;
 
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
-
-import org.hamcrest.core.Is;
-import org.hamcrest.core.IsEqual;
-
-import static org.hamcrest.CoreMatchers.*;
 
 import org.junit.Test;
 
@@ -54,6 +51,17 @@ public class ComponentTest {
 		Component taxCalc = new GetTaxCalc();
 		taxCalc.execute(context);
 		assertThat(person.getTax(), is(245.00));
+	}
+
+	public void testSimpleDecision() {
+		Context context = new SimpleContext();
+		Person person = new Person();
+		person.setAge(30);
+		context.setData(KEY_PERSON, person);
+		Component populateMinor = new PopulateMinor();
+		Component isMinor = new IsMinor(populateMinor, null);
+		isMinor.execute(context);
+		assertThat(person.isMinor(), is(true));
 	}
 
 }

@@ -2,13 +2,17 @@ package com.gk.smartcode.data;
 
 public class Person {
 
+	public double getTax() {
+		return tax;
+	}
 	private String name;
 	private Integer age;
 	private double tax;
 	private State state;
+	private boolean minor;
 
-	public double getTax() {
-		return tax;
+	public boolean isMinor() {
+		return minor;
 	}
 
 	public String getName() {
@@ -37,6 +41,9 @@ public class Person {
 
 	public void setState(State state) {
 		this.state = state;
+	}	
+	public void setMinor(boolean b) {
+		minor = b;
 	}
 
 }
